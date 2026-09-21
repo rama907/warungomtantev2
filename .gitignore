@@ -1,0 +1,17 @@
+﻿# rahasia & data â€” jangan pernah di-commit
+config.php
+.env
+.env.*
+!.env.example
+!config.example.php
+*.zip
+*.bak
+*.sql
+!database.schema.sql
+*.log
+uploads/*
+!uploads/.gitkeep
+node_modules/
+.next/
+.DS_Store
+Thumbs.db
