@@ -85,6 +85,10 @@ Known limitations (good next steps): no CSRF tokens on forms and no login-attemp
 
 Found a vulnerability? See [SECURITY.md](SECURITY.md).
 
+## License
+
+MIT. See [LICENSE](LICENSE).
+
 ## Author
 
 **Ramah Rinaldi Ruslan** — Computer Engineering, Telkom University
