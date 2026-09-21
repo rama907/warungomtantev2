@@ -31,6 +31,8 @@ if ($conn->connect_error) {
 // Set charset
 $conn->set_charset("utf8");
 
+// Cookie sesi: HttpOnly, SameSite, dan Secure saat memakai HTTPS
+session_set_cookie_params(['httponly' => true, 'samesite' => 'Lax', 'secure' => !empty($_SERVER['HTTPS'])]);
 // Start session
 session_start();
 

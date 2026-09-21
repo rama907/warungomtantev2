@@ -68,11 +68,22 @@ database.schema.sql  database schema (no data, no accounts)
 5. Schedule the cron scripts (`daily-duty-recap-cron.php`, `daily-absent-recap-cron.php`, `api/backup_weekly_salary.php`).
 6. Keep `display_errors` off in production.
 
-## Security notes
+## Security
 
-- `config.php`, `.env`, database dumps and uploads are excluded by `.gitignore`.
-- Secrets live only in `config.php` on the server. This repository has no credentials, keys, webhooks or default passwords.
-- Passwords are stored with `password_hash()`.
+What the code does:
+- SQL uses prepared statements; passwords are stored with `password_hash()` and checked with `password_verify()`.
+- The session ID is regenerated after login, and the session cookie is set `HttpOnly`, `SameSite=Lax` and `Secure` on HTTPS (see `config.example.php`).
+- Cron endpoints require a secret key (`CRON_SECRET_KEY`) when called over the web.
+- Access is role-based (admin / manager / staff).
+
+What you must do:
+- `config.php`, `.env`, database dumps and uploads are excluded by `.gitignore`. Secrets live only in `config.php` on the server; this repository has no credentials, keys, webhooks or default passwords.
+- Create the first admin with a strong password, and keep `display_errors` off in production.
+- Serve the site over HTTPS only.
+
+Known limitations (good next steps): no CSRF tokens on forms and no login-attempt limiting.
+
+Found a vulnerability? See [SECURITY.md](SECURITY.md).
 
 ## Author
 
